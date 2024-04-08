@@ -1,8 +1,5 @@
 const users = []
-const user = new User('Coralie', 'ANTOINE', 'Corantoine')
-user.save()
 
-User.getById(1)
 
 
 export class User {
@@ -12,15 +9,15 @@ export class User {
     id
     /**
      * Prenom de l'utilisateur
-     */
+    */
     firstname
     /**
      * Nom de l'utilisateur
-     */
+    */
     lastname
     /**
      * Pseudonyme de l'utilisateur
-     */
+    */
     username
 
     /**
@@ -28,7 +25,7 @@ export class User {
      * @param {String} firstname Prenom de l'utilisateur
      * @param {String} lastname Nom de l'utilisateur
      * @param {String} username Pseudonyme de l'utilisateur
-     */
+    */
 
     constructor(firstname, lastname, username) {
         // Ici on rajoute this.id = users.length +1 pour que l'on puisse avoir un id généré à chaque nouvel user
@@ -52,3 +49,5 @@ export class User {
         }
     }
 }
+const user = new User('Coralie', 'ANTOINE', 'Corantoine')
+user.save()
