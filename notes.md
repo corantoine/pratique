@@ -15,3 +15,8 @@ npm i --save express = Permet de l'ajouter dans le package.json (par défaut mai
 ## static
 
 Permet d'appeler une méthode directement sur la classe et non sur son instance
+
+## JWT
+Json Web Token
+
+Format permettant d'encrypter des données qui soient décodables uniquement pour ceux ayant la clé privée de lecture.

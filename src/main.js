@@ -1,30 +1,20 @@
 import express from 'express'
-import packageJson from '../package.json' assert { type: 'json'}
-import { User } from './models/Users.js';
+import loginRouter from './routers/login.js'
+import { accesslogMiddleware } from './middlewares/accesslog.js'
 
+const app = express()
 const host = process.env.HOST ?? 'localhost'
 const port = Number(process.env.PORT) || 3000
 
-const app = express();
-// Ici on crée une route : 
+app.use(accesslogMiddleware)
 
-app.get('/', (req, res) => {
-    res.json({
-        version: packageJson.version
-    })
-})
+app.use(express.static('public'))
 
-app.get('/user/:id', (req, res) => {
-    const id = req.params.id
-    const user = User.getById(id)
-    if (user) {
-        res.json(user)
-    } else {
-        res.status(404).send('Error 404: User not found')
-    }
-})
+app.use(express.urlencoded({ extended: true }))
+
+app.use(loginRouter)
 
 // Start the server
 app.listen(port, host, () => {
-    console.log(`Server (v${packageJson.version}) is running on http://${host}:${port}`);
+    console.log(`Server is running on http://${host}:${port}`)
 });
